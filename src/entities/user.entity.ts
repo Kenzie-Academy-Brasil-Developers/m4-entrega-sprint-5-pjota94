@@ -4,8 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
 import { Exclude } from "class-transformer";
+import Schedules_user_properties from "./schedules_user_properties.entity";
 
 @Entity("users")
 class User {
@@ -33,6 +35,12 @@ class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(
+    () => Schedules_user_properties,
+    (schedules_user_properties) => schedules_user_properties.user
+  )
+  schedulesUser: Schedules_user_properties[];
 }
 
 export default User;
