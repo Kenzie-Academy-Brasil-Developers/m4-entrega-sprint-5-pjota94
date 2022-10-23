@@ -2,6 +2,7 @@ import AppDataSource from "../../data-source";
 import User from "../../entities/user.entity";
 import { IUserUpdate } from "../../interfaces/users";
 import { hash } from "bcrypt";
+import AppError from "../../errors/appError";
 
 const updateUserService = async (
   { name, email, password }: IUserUpdate,
@@ -15,7 +16,7 @@ const updateUserService = async (
   const findUser = await userRepository.findOneBy({ id });
 
   if (!findUser) {
-    throw new Error("User Not Found!");
+    throw new AppError("User Not Found!", 404);
   }
 
   await userRepository.update(id, {
@@ -25,13 +26,13 @@ const updateUserService = async (
   });
 
   if (idBody !== undefined && findUser.id) {
-    throw new Error("can't change id");
+    throw new AppError("can't change id", 401);
   }
   if (admBody !== undefined) {
-    throw new Error("can't change isAdm");
+    throw new AppError("can't change isAdm", 401);
   }
   if (activeBody !== undefined) {
-    throw new Error("can't change activeBody");
+    throw new AppError("can't change activeBody", 401);
   }
 
   const user = await userRepository.findOneBy({ id });

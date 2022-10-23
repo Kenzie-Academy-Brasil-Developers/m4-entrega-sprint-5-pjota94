@@ -5,6 +5,7 @@ import { compare } from "bcrypt";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 import AppError from "../../errors/appError";
+import Propertie from "../../entities/properties.entity";
 
 const loginService = async ({
   email,

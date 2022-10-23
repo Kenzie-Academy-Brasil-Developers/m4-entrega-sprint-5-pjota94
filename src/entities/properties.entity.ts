@@ -33,7 +33,7 @@ class Propertie {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => Address)
+  @OneToOne(() => Address, { eager: true })
   @JoinColumn()
   address: Address;
 
@@ -43,8 +43,8 @@ class Propertie {
   )
   schedulesProperty: Schedules_user_properties[];
 
-  @ManyToOne(() => Categories)
-  categories: Categories;
+  @ManyToOne(() => Categories, { eager: true })
+  category: Categories;
 }
 
 export default Propertie;
