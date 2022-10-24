@@ -1,11 +1,13 @@
-FROM node:16.15.1
+FROM node
 
 WORKDIR /app
 
-COPY "package.json" .
+COPY "package.json" /app.
 
 RUN yarn
 
-COPY . .
+COPY . /app  
 
-CMD ["yarn", "dev"]
+
+
+
