@@ -11,29 +11,6 @@ const createUserService = async ({
   password,
 }: IUserRequest): Promise<User> => {
   const userRepository = AppDataSource.getRepository(User);
-  // const users = await userRepository.find();
-
-  // const emailAlreadyExist = users.find((user) => user.email == email);
-
-  // if (emailAlreadyExist) {
-  //   throw new AppError("Email Already Exist");
-  // }
-
-  // if (!name) {
-  //   throw new AppError("name if missing");
-  // }
-
-  // if (!email) {
-  //   throw new AppError("email if missing");
-  // }
-
-  // if (!isAdm) {
-  //   throw new AppError("isAdm if missing");
-  // }
-
-  // if (!password) {
-  //   throw new AppError("password if missing");
-  // }
 
   const hashedPassword = await hash(password, 10);
 
